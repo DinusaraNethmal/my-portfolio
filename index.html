@@ -5,28 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="images\d.png">
     <title>Dinusara Nethmal - Portfolio</title>
-    <!-- Tailwind CSS (This script is required to make the design work) -->
+    
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- 
-      👇 THIS IS THE FIX 
-      This script block tells Tailwind to enable 'class' based dark mode.
-      Your JavaScript adds/removes the 'dark' class, and this tells
-      Tailwind to pay attention to it.
-    -->
     <script>
         tailwind.config = {
-            darkMode: 'class', // This is the magic line!
+            darkMode: 'class', 
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Poppins', 'sans-serif'], // Keeps your font config
+                        sans: ['Poppins', 'sans-serif'], 
                     },
                 },
             }
         }
     </script>
-    <!-- 👆 END OF FIX -->
+    
 
     <!-- Google Font: Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,7 +31,6 @@
     <!-- Typed.js (for the typing animation) -->
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
 
-    <!-- 👇 Your Custom Stylesheet -->
     <link rel="stylesheet" href="style.css">
 
 </head>
@@ -197,35 +190,6 @@
             </div>
         </section>
 
-        <!-- Section: Services -->
-        <section id="services" class="py-20 md:py-32 reveal bg-slate-50 dark:bg-slate-900 rounded-lg">
-            <h2 class="text-3xl md:text-4xl font-bold text-center">My <span class="text-blue-600 dark:text-blue-500">Experiences</span></h2>
-            <p class="text-center text-slate-500 dark:text-slate-400 mt-2">What I can do for you</p>
-            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
-                <!-- Service Card 1: Web Development -->
-                <div class="bg-white dark:bg-slate-800 p-8 rounded-lg shadow-lg text-center hover:bg-blue-600 dark:hover:bg-blue-700 text-slate-700 dark:text-slate-200 hover:text-white dark:hover:text-white transition-all duration-300 transform hover:-translate-y-2 group">
-                    <i class='bx bx-code-alt text-5xl text-blue-600 dark:text-blue-500 mb-4 group-hover:text-white transition-colors'></i>
-                    <h3 class="text-2xl font-bold mb-3">Full Stack Development</h3>
-                    <p class="text-slate-600 dark:text-slate-300 group-hover:text-slate-100 dark:group-hover:text-slate-100 mb-4 transition-colors">Building responsive front-ends and robust back-ends using modern technologies like Spring Boot.</p>
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 group-hover:text-white dark:group-hover:text-white hover:underline transition-colors">Read More</a>
-                </div>
-                <!-- Service Card 2: Machine Learning -->
-                <div class="bg-white dark:bg-slate-800 p-8 rounded-lg shadow-lg text-center hover:bg-blue-600 dark:hover:bg-blue-700 text-slate-700 dark:text-slate-200 hover:text-white dark:hover:text-white transition-all duration-300 transform hover:-translate-y-2 group">
-                    <i class='bx bx-brain text-5xl text-blue-600 dark:text-blue-500 mb-4 group-hover:text-white transition-colors'></i>
-                    <h3 class="text-2xl font-bold mb-3">ML Solutions</h3>
-                    <p class="text-slate-600 dark:text-slate-300 group-hover:text-slate-100 dark:group-hover:text-slate-100 mb-4 transition-colors">Exploring and implementing Machine Learning and Deep Learning concepts for data-driven insights.</p>
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 group-hover:text-white dark:group-hover:text-white hover:underline transition-colors">Read More</a>
-                </div>
-                <!-- Service Card 3: Open Source -->
-                <div class="bg-white dark:bg-slate-800 p-8 rounded-lg shadow-lg text-center hover:bg-blue-600 dark:hover:bg-blue-700 text-slate-700 dark:text-slate-200 hover:text-white dark:hover:text-white transition-all duration-300 transform hover:-translate-y-2 group">
-                    <i class='bx bxl-github text-5xl text-blue-600 dark:text-blue-500 mb-4 group-hover:text-white transition-colors'></i>
-                    <h3 class="text-2xl font-bold mb-3">Open Source</h3>
-                    <p class="text-slate-600 dark:text-slate-300 group-hover:text-slate-100 dark:group-hover:text-slate-100 mb-4 transition-colors">Passionate about open source collaboration and building tools for the community.</p>
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 group-hover:text-white dark:group-hover:text-white hover:underline transition-colors">Read More</a>
-                </div>
-            </div>
-        </section>
-
         <!-- Section: Portfolio -->
         <section id="portfolio" class="py-20 md:py-32 reveal">
             <h2 class="text-3xl md:text-4xl font-bold text-center">Latest <span class="text-blue-600 dark:text-blue-500">Projects</span></h2>
@@ -297,12 +261,7 @@
             <p class="text-center text-slate-500 dark:text-slate-400 mt-2">Let's build something amazing together</p>
             
             <div class="max-w-xl mx-auto mt-12 p-8 bg-white dark:bg-slate-800 rounded-lg shadow-lg">
-                <!-- 
-                  This form is set up to work with Formspree.
-                  1. Go to https://formspree.io/ and create a new form.
-                  2. Copy your unique form ID URL.
-                  3. Paste it in the 'action' attribute below, replacing "YOUR_UNIQUE_ID".
-                -->
+                
                 <form action="https://formspree.io/f/mnnldgzb" method="POST" id="contact-form">
                     <div class="space-y-6">
                         <!-- Name -->
