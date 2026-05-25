@@ -176,11 +176,11 @@ const About = () => {
                 className="glass rounded-2xl overflow-hidden hover:-translate-y-1 transition-all duration-300 group"
               >
                 {/* Banner image */}
-                <div className="relative w-full h-40">
+                <div className="relative w-full h-52 overflow-hidden rounded-t-2xl">
                   <img
                     src={edu.image}
                     alt={edu.institution}
-                    className="w-full h-40 object-cover rounded-t-2xl"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     onError={(e) => {
                       e.target.style.display = 'none';
                       e.target.nextElementSibling?.classList.remove('hidden');
@@ -195,8 +195,8 @@ const About = () => {
                       {getInitials(edu.institution)}
                     </span>
                   </div>
-                  {/* Bottom gradient overlay for readability */}
-                  <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/40 to-transparent rounded-b-none pointer-events-none" />
+                  {/* Bottom gradient overlay for premium look */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-950/45 via-transparent to-transparent pointer-events-none" />
                 </div>
 
                 {/* Text content */}

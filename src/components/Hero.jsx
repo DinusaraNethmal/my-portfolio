@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-scroll';
 import { TypeAnimation } from 'react-type-animation';
-import { FaGithub, FaLinkedin, FaEnvelope, FaDownload } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaFacebook, FaInstagram, FaDownload } from 'react-icons/fa';
 import { HiArrowRight } from 'react-icons/hi';
 
 const Hero = () => {
@@ -121,8 +121,8 @@ const Hero = () => {
               </Link>
 
               <motion.a
-                href="/cv/resume.pdf"
-                download
+                href="/cv/Profile.pdf"
+                download="Dinusara_Nethmal_CV.pdf"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 className="group px-6 py-3 border border-gray-300 dark:border-gray-700
@@ -143,14 +143,15 @@ const Hero = () => {
               className="flex gap-3 justify-center lg:justify-start"
             >
               {[
-                { icon: FaGithub,   href: 'https://github.com/DinusaraNethmal',       label: 'GitHub'   },
-                { icon: FaLinkedin, href: 'https://linkedin.com/in/dinusara-nethmal', label: 'LinkedIn' },
-                { icon: FaEnvelope, href: 'mailto:dinusaranethmal@email.com',          label: 'Email'    },
+                { icon: FaGithub,    href: 'https://github.com/DinusaraNethmal',       label: 'GitHub'    },
+                { icon: FaLinkedin,  href: 'https://linkedin.com/in/dinusara-nethmal', label: 'LinkedIn'  },
+                { icon: FaFacebook,  href: 'https://www.facebook.com/dinusara.nethmal/',  label: 'Facebook'  },
+                { icon: FaInstagram, href: 'https://www.instagram.com/dinusar.netha/',label: 'Instagram' },
               ].map(({ icon: Icon, href, label }) => (
                 <motion.a
                   key={label}
                   href={href}
-                  target={label !== 'Email' ? '_blank' : undefined}
+                  target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
                   whileHover={{ scale: 1.1, y: -2 }}

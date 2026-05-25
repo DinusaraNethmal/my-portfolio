@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-scroll';
-import { FaGithub, FaLinkedin, FaEnvelope, FaHeart } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaFacebook, FaInstagram, FaHeart } from 'react-icons/fa';
 
 const quickLinks = [
   { label: 'Home',     to: 'hero'     },
@@ -12,9 +12,10 @@ const quickLinks = [
 ];
 
 const socials = [
-  { icon: FaGithub,   href: 'https://github.com/DinusaraNethmal',      label: 'GitHub'   },
-  { icon: FaLinkedin, href: 'https://linkedin.com/in/dinusara-nethmal', label: 'LinkedIn' },
-  { icon: FaEnvelope, href: 'mailto:dinusaranethmal@email.com',         label: 'Email'    },
+  { icon: FaGithub,    href: 'https://github.com/DinusaraNethmal',       label: 'GitHub'    },
+  { icon: FaLinkedin,  href: 'https://linkedin.com/in/dinusara-nethmal', label: 'LinkedIn'  },
+  { icon: FaFacebook,  href: 'https://www.facebook.com/dinusara.nethmal/',  label: 'Facebook'  },
+  { icon: FaInstagram, href: 'https://www.instagram.com/dinusar.netha/',label: 'Instagram' },
 ];
 
 const Footer = () => {
@@ -72,7 +73,7 @@ const Footer = () => {
                 <motion.a
                   key={label}
                   href={href}
-                  target={label !== 'Email' ? '_blank' : undefined}
+                  target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
                   whileHover={{ scale: 1.15, y: -2 }}

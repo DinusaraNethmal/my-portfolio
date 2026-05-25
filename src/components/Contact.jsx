@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { FaGithub, FaLinkedin, FaEnvelope, FaCopy, FaCheck, FaMagic } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaCopy, FaCheck, FaMagic, FaPaperPlane, FaFacebook, FaInstagram } from 'react-icons/fa';
 import { HiSparkles } from 'react-icons/hi';
 import { generateRecruiterMessage } from '../services/gemini';
+
+const FORMSPREE_URL = 'https://formspree.io/f/mnnldgzb';
 
 const fadeUp = (delay = 0) => ({
   hidden:  { opacity: 0, y: 25 },
@@ -18,6 +20,7 @@ const Contact = () => {
   const [aiLoading, setAiLoading] = useState(false);
   const [aiError, setAiError]     = useState('');
   const [copied, setCopied]       = useState(false);
+  const [status, setStatus]       = useState('idle'); // 'idle' | 'submitting' | 'success' | 'error' | 'unconfigured'
 
   const handleFormChange = (e) =>
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -44,7 +47,50 @@ const Contact = () => {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const mailtoLink = `mailto:dinusaranethmal@email.com?subject=${encodeURIComponent(form.subject)}&body=${encodeURIComponent(`Name: ${form.name}\n\n${form.message}`)}`;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    // Check if form is filled
+    if (!form.name.trim() || !form.email.trim() || !form.subject.trim() || !form.message.trim()) {
+      alert('Please fill out all fields.');
+      return;
+    }
+
+    // Check if user has configured the Formspree URL
+    if (FORMSPREE_URL.includes('your-formspree-id-here')) {
+      setStatus('unconfigured');
+      return;
+    }
+
+    setStatus('submitting');
+    try {
+      const response = await fetch(FORMSPREE_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          subject: form.subject,
+          message: form.message,
+        }),
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        setForm({ name: '', email: '', subject: '', message: '' });
+        // Reset status to idle after 5 seconds
+        setTimeout(() => setStatus('idle'), 5000);
+      } else {
+        setStatus('error');
+      }
+    } catch (err) {
+      console.error('Formspree submission error:', err);
+      setStatus('error');
+    }
+  };
 
   // Shared input class
   const inputClass = `w-full bg-gray-50 dark:bg-gray-800/60
@@ -95,9 +141,10 @@ const Contact = () => {
               <h3 className="text-gray-900 dark:text-white font-semibold mb-4">Reach Me At</h3>
               <div className="space-y-3">
                 {[
-                  { icon: FaEnvelope, label: 'Email',    value: 'dinusaranethmal@email.com',   href: 'mailto:dinusaranethmal@email.com' },
-                  { icon: FaGithub,   label: 'GitHub',   value: 'DinusaraNethmal',             href: 'https://github.com/DinusaraNethmal' },
-                  { icon: FaLinkedin, label: 'LinkedIn', value: 'dinusara-nethmal',             href: 'https://linkedin.com/in/dinusara-nethmal' },
+                  { icon: FaGithub,    label: 'GitHub',    value: 'DinusaraNethmal',             href: 'https://github.com/DinusaraNethmal' },
+                  { icon: FaLinkedin,  label: 'LinkedIn',  value: 'dinusara-nethmal',             href: 'https://linkedin.com/in/dinusara-nethmal' },
+                  { icon: FaFacebook,  label: 'Facebook',  value: 'Dinusara Nethmal',             href: 'https://www.facebook.com/dinusara.nethmal/' },
+                  { icon: FaInstagram, label: 'Instagram', value: '@dinusar.netha',               href: 'https://www.instagram.com/dinusar.netha/' },
                 ].map(({ icon: Icon, label, value, href }) => (
                   <a
                     key={label}
@@ -215,7 +262,7 @@ const Contact = () => {
           >
             <div className="glass rounded-2xl p-6 h-full">
               <h3 className="text-gray-900 dark:text-white font-semibold mb-5">Send a Message</h3>
-              <div className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 {[
                   { name: 'name',    label: 'Your Name',     type: 'text',  placeholder: 'John Smith'              },
                   { name: 'email',   label: 'Email Address', type: 'email', placeholder: 'john@company.com'        },
@@ -230,6 +277,7 @@ const Contact = () => {
                       onChange={handleFormChange}
                       placeholder={placeholder}
                       className={inputClass}
+                      required
                     />
                   </div>
                 ))}
@@ -242,26 +290,73 @@ const Contact = () => {
                     rows={5}
                     placeholder="Tell me about the opportunity..."
                     className={`${inputClass} resize-none`}
+                    required
                   />
                 </div>
-                <motion.a
-                  href={mailtoLink}
+
+                {status === 'success' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="p-4 bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 text-emerald-800 dark:text-emerald-450 rounded-xl text-xs text-center"
+                  >
+                    🎉 Thank you! Your message has been sent successfully.
+                  </motion.div>
+                )}
+
+                {status === 'error' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="p-4 bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/20 text-red-800 dark:text-red-400 rounded-xl text-xs text-center"
+                  >
+                    ⚠️ Oops! Failed to send. Please check your setup or email me directly.
+                  </motion.div>
+                )}
+
+                {status === 'unconfigured' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="p-4 bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/20 text-amber-800 dark:text-amber-400 rounded-xl text-xs leading-relaxed"
+                  >
+                    💡 <strong>Setup Required:</strong> Please replace <code>FORMSPREE_URL</code> inside <code>src/components/Contact.jsx</code> with your actual Formspree endpoint (e.g. <code>https://formspree.io/f/your-id</code>) to receive messages in your email.
+                  </motion.div>
+                )}
+
+                <motion.button
+                  type="submit"
+                  disabled={status === 'submitting'}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   className="w-full flex items-center justify-center gap-2 py-3 bg-blue-600
-                             hover:bg-blue-700 text-white rounded-xl font-semibold text-sm
-                             transition-colors shadow-lg shadow-blue-600/25"
+                             hover:bg-blue-700 disabled:bg-blue-400 text-white rounded-xl font-semibold text-sm
+                             transition-colors shadow-lg shadow-blue-600/25 cursor-pointer"
                 >
-                  <FaEnvelope size={14} />
-                  Send via Email Client
-                </motion.a>
-                <p className="text-center text-gray-500 text-xs">
+                  {status === 'submitting' ? (
+                    <>
+                      <span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
+                      Sending Message...
+                    </>
+                  ) : status === 'success' ? (
+                    <>
+                      <FaCheck size={14} />
+                      Message Sent!
+                    </>
+                  ) : (
+                    <>
+                      <FaPaperPlane size={14} />
+                      Send Message
+                    </>
+                  )}
+                </motion.button>
+                <p className="text-center text-gray-500 text-xs mt-2">
                   Or email directly at{' '}
                   <a href="mailto:dinusaranethmal@email.com" className="text-blue-500 hover:underline">
                     dinusaranethmal@email.com
                   </a>
                 </p>
-              </div>
+              </form>
             </div>
           </motion.div>
         </div>
