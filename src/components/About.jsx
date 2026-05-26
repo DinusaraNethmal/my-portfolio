@@ -10,7 +10,7 @@ const fadeUp = (delay = 0) => ({
 });
 
 const stats = [
-  { icon: FaCode,   value: '3+',   label: 'Projects Built'      },
+  { icon: FaCode,   value: '5+',   label: 'Projects Built'      },
   { icon: FaBrain,  value: '15+',  label: 'Technologies Learned' },
   { icon: FaRocket, value: '2025', label: 'Internship Goal'      },
 ];
@@ -140,7 +140,7 @@ const About = () => {
                 { label: 'Location',  value: 'Sri Lanka/ Dankotuwa'                },
                 { label: 'Status',    value: 'Undergraduate Student At SLIIT'    },
                 { label: 'Focus',     value: 'AI + ML + Full Stack Dev'      },
-                { label: 'Available', value: 'For Wrok 2025/2026'},
+                { label: 'Available', value: 'For Work 2025/2026'},
               ].map(({ label, value }) => (
                 <div
                   key={label}
