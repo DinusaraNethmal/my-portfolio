@@ -63,6 +63,26 @@ export const projects = [
       'Role-based access for Customers (to browse and buy) and Administrators (to manage inventory and orders).',
     ],
   },
+  {
+    id: 4,
+    title: 'Hotel Customer Support Multi-Agent System',
+    image: '/images/projects/photo-collage.png.png',
+    description:
+      'An intelligent virtual front desk designed to manage hotel operations. It utilizes an Orchestrator-Agent Architecture powered by the Gemini 2.5 Flash model to dynamically classify user intents and route them to specialized AI sub-agents or deterministic backend engines.',
+    technologies: ['Node.js', 'Express.js', 'React.js', 'MongoDB', 'Mongoose ODM', 'Gemini 2.5 Flash API', 'Vite'],
+    github: 'https://github.com/DinusaraNethmal/Hotel-Customer-Support-Multi-Agent-System',
+    demo: '',
+    status: 'completed',
+    category: 'AI',
+    features: [
+      'Implements a central Orchestrator Agent to perform real-time natural language intent classification.',
+    'AI-powered Reception Agent that handles structured variable extraction using strict schema enforcement.',
+    'Deterministic backend routing for real-time room availability validation directly via MongoDB.',
+    'Automated Pricing Agent to handle complex tariff math calculations and auxiliary request additions.',
+    'Dynamic Guest Support Agent injected with contextual data structures to resolve localized customer FAQs instantly.',
+    'Full-stack real-time conversational chat dashboard built with React and integrated secure API data pipelines.',
+    ],
+  },
 ];
 
 // Filter categories shown in the Projects section
