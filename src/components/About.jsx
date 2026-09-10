@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { FaGraduationCap, FaBrain, FaCode, FaRocket } from 'react-icons/fa';
+import { FaGraduationCap, FaBrain, FaCode, FaDatabase } from 'react-icons/fa';
 import { HiLocationMarker, HiCalendar } from 'react-icons/hi';
 import { education } from '../data/education';
 
@@ -10,9 +10,21 @@ const fadeUp = (delay = 0) => ({
 });
 
 const stats = [
-  { icon: FaCode,   value: '5+',   label: 'Projects Built'      },
-  { icon: FaBrain,  value: '15+',  label: 'Technologies Learned' },
-  { icon: FaRocket, value: '2025', label: 'Internship Goal'      },
+  {
+    icon: FaCode,
+    title: '8+ Projects Built',
+    desc: 'Engineering robust systems through clean code',
+  },
+  {
+    icon: FaBrain,
+    title: 'Machine Learning',
+    desc: 'Developing algorithms that learn from data',
+  },
+  {
+    icon: FaDatabase,
+    title: 'Data Science',
+    desc: 'Extracting insights from complex datasets',
+  },
 ];
 
 const interests = [
@@ -83,10 +95,9 @@ const About = () => {
               exploring new technologies and pushing my limits.
             </p>
             <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-              My goal is to land a meaningful role in{' '}
-              <strong className="text-gray-900 dark:text-white">AI Engineering</strong> or{' '}
-              <strong className="text-gray-900 dark:text-white">Full Stack Development</strong>, where I can
-              contribute, learn, and grow alongside an innovative team.
+              My goal is to build a career combining{' '}
+              <strong className="text-gray-900 dark:text-white">AI Engineering</strong> and{' '}
+              <strong className="text-gray-900 dark:text-white">Full Stack Development</strong>, creating intelligent, scalable, and innovative solutions that deliver real-world impact.
             </p>
 
             {/* Interests */}
@@ -116,17 +127,21 @@ const About = () => {
             animate={inView ? 'visible' : 'hidden'}
             className="space-y-4"
           >
-            {/* Stats cards */}
-            <div className="grid grid-cols-3 gap-4 mb-6">
-              {stats.map(({ icon: Icon, value, label }) => (
+            {/* Stats / Focus cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+              {stats.map(({ icon: Icon, title, desc }) => (
                 <div
-                  key={label}
-                  className="glass rounded-2xl p-5 text-center
-                             hover:-translate-y-1 transition-all duration-300"
+                  key={title}
+                  className="glass rounded-2xl p-4 sm:p-5 text-center flex flex-col items-center justify-center
+                             hover:-translate-y-1 transition-all duration-300 min-h-[135px]"
                 >
-                  <Icon className="text-blue-500 text-2xl mx-auto mb-2" />
-                  <div className="text-2xl font-bold text-gray-900 dark:text-white">{value}</div>
-                  <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">{label}</div>
+                  <Icon className="text-blue-500 text-2xl mb-2.5" />
+                  <div className="text-sm sm:text-base font-bold text-gray-900 dark:text-white leading-tight">
+                    {title}
+                  </div>
+                  <div className="text-xs text-gray-500 dark:text-gray-400 mt-1.5 leading-relaxed">
+                    {desc}
+                  </div>
                 </div>
               ))}
             </div>

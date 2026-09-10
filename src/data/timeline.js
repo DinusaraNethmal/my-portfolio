@@ -69,16 +69,5 @@ export const timeline = [
     icon: 'code',
     color: 'from-fuchsia-500 to-pink-500',
   },
-  {
-    id: 7,
-    year: '2025 – 2026',
-    title: 'Internship Goal 🎯',
-    subtitle: 'AI Engineering & Full Stack',
-    description:
-      'Actively seeking an internship in AI Engineering, Data Science, or Full Stack Development. Prepared to deploy expertise in modern AI tools, agentic workflows, and React/Java systems in team environments.',
-    type: 'goal',
-    icon: 'target',
-    color: 'from-cyan-400 to-teal-400',
-  },
 ];
 

@@ -2,24 +2,28 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import {
   SiReact, SiTailwindcss, SiHtml5, SiCss, SiJavascript,
-  SiNodedotjs, SiExpress, SiSpringboot, SiFastapi,
-  SiPython, SiNumpy, SiPandas, SiGoogle,
-  SiMongodb, SiMysql,
-  SiGit, SiGithub, SiPostman,
+  SiNodedotjs, SiExpress, SiSpringboot, SiFastapi, SiDotnet,
+  SiPython, SiNumpy, SiPandas, SiLangchain,
+  SiMongodb, SiMysql, SiPostgresql, SiSupabase,
+  SiGit, SiGithub, SiN8N,
 } from 'react-icons/si';
+import { FaRobot } from 'react-icons/fa';
+import { VscVscode } from 'react-icons/vsc';
 import { skillCategories } from '../data/skills';
 
 const iconMap = {
   SiReact, SiTailwindcss, SiHtml5,
   SiCss3: SiCss,
   SiJavascript,
+  SiDotnet,
   SiNodedotjs, SiExpress, SiSpringboot, SiFastapi,
-  SiPython, SiNumpy, SiPandas, SiGoogle,
-  SiLangchain: SiPython,
-  SiMongodb, SiMysql,
+  SiPython, SiNumpy, SiPandas, SiLangchain,
+  FaRobot,
+  SiPostgresql, SiMongodb, SiMysql, SiSupabase,
   SiGit, SiGithub,
-  SiVisualstudiocode: SiGit,
-  SiPostman,
+  VscVscode,
+  SiVisualstudiocode: VscVscode,
+  SiN8N,
 };
 
 const fadeUp = (delay = 0) => ({
