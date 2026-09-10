@@ -5,46 +5,61 @@ const LoadingScreen = () => {
     <AnimatePresence>
       <motion.div
         initial={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 bg-white dark:bg-gray-950 flex flex-col items-center justify-center z-[9999] transition-colors duration-300"
+        exit={{ opacity: 0, transition: { duration: 0.5, ease: 'easeOut' } }}
+        className="fixed inset-0 bg-white flex flex-col items-center justify-center z-[9999]"
       >
-        {/* Logo mark */}
+        {/* Serif D mark */}
         <motion.div
-          initial={{ scale: 0, rotate: -180 }}
-          animate={{ scale: 1, rotate: 0 }}
-          transition={{ type: 'spring', duration: 0.8 }}
-          className="relative mb-8"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+          className="relative mb-10 flex items-center justify-center"
         >
-          <div className="w-24 h-24 rounded-2xl flex items-center justify-center overflow-hidden bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 shadow-lg dark:shadow-glow p-2">
-            <img src="/images/d.png" alt="logo" className="w-full h-full object-contain" />
-          </div>
-          {/* Spinning ring */}
+          {/* Subtle circular pulse behind letter */}
           <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
-            className="absolute -inset-2 border-2 border-transparent border-t-blue-500 rounded-2xl"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: [1, 1.08, 1], opacity: [0.08, 0.14, 0.08] }}
+            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+            className="absolute w-28 h-28 rounded-full bg-blue-500"
           />
+
+          {/* The elegant serif D */}
+          <span
+            className="relative select-none text-gray-900"
+            style={{
+              fontFamily: '"Playfair Display", "Didot", "Bodoni MT", "Times New Roman", serif',
+              fontSize: '108px',
+              fontWeight: 700,
+              lineHeight: 1,
+              letterSpacing: '-0.02em',
+              userSelect: 'none',
+            }}
+          >
+            D
+          </span>
         </motion.div>
 
-        {/* Progress bar */}
-        <motion.div className="w-48 h-0.5 bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden">
-          <motion.div
-            initial={{ width: '0%' }}
-            animate={{ width: '100%' }}
-            transition={{ duration: 1.8, ease: 'easeInOut' }}
-            className="h-full bg-gradient-to-r from-blue-600 to-blue-400 rounded-full"
-          />
-        </motion.div>
-
-        {/* Text */}
+        {/* Name */}
         <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          className="mt-4 text-gray-500 dark:text-gray-400 text-sm tracking-widest uppercase font-mono"
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.35, duration: 0.6, ease: 'easeOut' }}
+          className="text-gray-800 text-sm font-medium tracking-[0.25em] uppercase mb-8"
+          style={{ fontFamily: '"Inter", system-ui, sans-serif' }}
         >
-          Loading Portfolio...
+          Dinusara Nethmal
         </motion.p>
+
+        {/* Thin progress line */}
+        <div className="w-40 h-px bg-gray-200 overflow-hidden">
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 1.8, ease: [0.4, 0, 0.2, 1], delay: 0.2 }}
+            style={{ transformOrigin: 'left center' }}
+            className="h-full bg-gray-900"
+          />
+        </div>
       </motion.div>
     </AnimatePresence>
   );

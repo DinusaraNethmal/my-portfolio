@@ -14,10 +14,10 @@ const Hero = () => {
       {/* Subtle grid overlay */}
       <div className="absolute inset-0 bg-grid opacity-40 dark:opacity-100" />
 
-      {/* Minimal gradient accents */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -left-32 w-[500px] h-[500px] bg-blue-400/8 dark:bg-blue-500/5 rounded-full blur-[140px] animate-blob" />
-        <div className="absolute bottom-1/4 right-0 w-[400px] h-[400px] bg-slate-300/10 dark:bg-blue-600/4 rounded-full blur-[120px] animate-blob animate-delay-2000" />
+      {/* Minimal gradient accents (light mode only to keep dark mode pure OLED black) */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none dark:hidden">
+        <div className="absolute top-1/4 -left-32 w-[500px] h-[500px] bg-blue-400/8 rounded-full blur-[140px] animate-blob" />
+        <div className="absolute bottom-1/4 right-0 w-[400px] h-[400px] bg-slate-300/10 rounded-full blur-[120px] animate-blob animate-delay-2000" />
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24">

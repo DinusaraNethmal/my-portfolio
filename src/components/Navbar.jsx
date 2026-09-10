@@ -47,9 +47,14 @@ const Navbar = ({ theme, toggleTheme }) => {
 
             {/* Logo */}
             <Link to="hero" smooth duration={500} className="cursor-pointer">
-              <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-2">
-                <div className="w-9 h-9 rounded-lg flex items-center justify-center overflow-hidden bg-white/10 dark:bg-black/10 border border-gray-200 dark:border-gray-800">
-                  <img src="/images/d.png" alt="logo" className="w-full h-full object-contain" />
+              <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-xl flex items-center justify-center bg-gray-100 dark:bg-black border border-gray-200 dark:border-gray-800 shadow-sm transition-colors">
+                  <span
+                    className="font-serif text-gray-900 dark:text-white text-xl font-bold select-none"
+                    style={{ lineHeight: 1 }}
+                  >
+                    D
+                  </span>
                 </div>
                 <span className="font-bold text-gray-900 dark:text-white hidden sm:block">
                   Dinusara<span className="text-blue-500">.</span>

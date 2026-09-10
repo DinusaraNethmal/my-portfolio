@@ -17,10 +17,25 @@ export default {
           800: '#1e40af',
           900: '#1e3a8a',
         },
+        // OLED-true dark palette — pure blacks, no blue tint
+        gray: {
+          50:  '#f9fafb',
+          100: '#f3f4f6',
+          200: '#e5e7eb',
+          300: '#d1d5db',
+          400: '#9ca3af',
+          500: '#6b7280',
+          600: '#4b5563',
+          700: '#222222',
+          800: '#1a1a1a',
+          900: '#111111',
+          950: '#000000',
+        },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
         mono: ['"Fira Code"', 'monospace'],
+        serif: ['"Playfair Display"', 'Didot', '"Bodoni MT"', '"Times New Roman"', 'serif'],
       },
       animation: {
         blob:      'blob 10s infinite',

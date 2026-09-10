@@ -42,7 +42,7 @@ const About = () => {
       id="about"
       className="section-padding bg-white dark:bg-gray-950 relative overflow-hidden transition-colors duration-300"
     >
-      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/5 dark:hidden rounded-full blur-3xl pointer-events-none" />
 
       <div className="container-custom" ref={ref}>
 

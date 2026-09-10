@@ -30,9 +30,14 @@ const Footer = () => {
 
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-8 rounded-lg flex items-center justify-center overflow-hidden bg-white/10 dark:bg-black/10 border border-gray-200 dark:border-gray-800">
-                <img src="/images/d.png" alt="logo" className="w-full h-full object-contain" />
+            <div className="flex items-center gap-2.5 mb-3">
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-gray-100 dark:bg-black border border-gray-200 dark:border-gray-800 shadow-sm transition-colors">
+                <span
+                  className="font-serif text-gray-900 dark:text-white text-lg font-bold select-none"
+                  style={{ lineHeight: 1 }}
+                >
+                  D
+                </span>
               </div>
               <span className="font-bold text-gray-900 dark:text-white">
                 Dinusara<span className="text-blue-500">.</span>
