@@ -7,7 +7,15 @@ import { useState, useEffect } from 'react';
  */
 export const useTheme = () => {
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('dn-theme') || 'dark';
+    const saved = localStorage.getItem('dn-theme-preference');
+    const initial = saved === 'dark' || saved === 'light' ? saved : 'light';
+    const root = document.documentElement;
+    if (initial === 'dark') {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
+    return initial;
   });
 
   useEffect(() => {
@@ -17,6 +25,7 @@ export const useTheme = () => {
     } else {
       root.classList.remove('dark');
     }
+    localStorage.setItem('dn-theme-preference', theme);
     localStorage.setItem('dn-theme', theme);
   }, [theme]);
 
