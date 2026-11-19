@@ -20,7 +20,9 @@ export const generateRecruiterMessage = async (jobType) => {
   const data = await response.json().catch(() => null);
 
   if (!response.ok) {
-    throw new Error(data?.error || `API error: ${response.status}`);
+    const error = new Error(data?.error || `API error: ${response.status}`);
+    error.code = data?.code;
+    throw error;
   }
 
   const text = data?.text;

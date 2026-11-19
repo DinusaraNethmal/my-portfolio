@@ -33,8 +33,12 @@ const Contact = () => {
     try {
       const msg = await generateRecruiterMessage(jobType.trim());
       setGenerated(msg);
-    } catch {
-      setAiError('Sorry, message generation is temporarily unavailable. Please try again later.');
+    } catch (error) {
+      setAiError(
+        error?.code === 'INVALID_JOB_TITLE'
+          ? error.message
+          : 'Sorry, message generation is temporarily unavailable. Please try again later.'
+      );
     } finally {
       setAiLoading(false);
     }
