@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { FaGithub, FaLinkedin, FaCopy, FaCheck, FaMagic, FaPaperPlane, FaFacebook, FaInstagram } from 'react-icons/fa';
 import { HiSparkles } from 'react-icons/hi';
-import { generateRecruiterMessage } from '../services/gemini';
+import { generateRecruiterMessage } from '../services/groq';
 
 const FORMSPREE_URL = 'https://formspree.io/f/mnnldgzb';
 
@@ -181,11 +181,11 @@ const Contact = () => {
                 <span className="px-2 py-0.5 bg-blue-50 dark:bg-blue-500/10
                                  text-blue-600 dark:text-blue-400 text-xs rounded-full
                                  border border-blue-200 dark:border-blue-500/20">
-                  Gemini
+                  Groq
                 </span>
               </div>
               <p className="text-gray-500 text-xs mb-4">
-                Type a job type → Gemini writes a professional outreach message for you.
+                Type a job type → Groq writes a professional outreach message for you.
               </p>
 
               <div className="flex gap-2 mb-4">

@@ -121,7 +121,7 @@ const Hero = () => {
               </Link>
 
               <motion.a
-                href="/cv/Profile.pdf"
+                href="/cv/Dinusara_Nethmal_AI-ML_Enginner_CV.pdf"
                 download="Dinusara_Nethmal_CV.pdf"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}

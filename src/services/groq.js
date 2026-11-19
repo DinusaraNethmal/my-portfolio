@@ -1,12 +1,13 @@
 // ============================================================
-// Gemini AI Service
+// Groq AI Service
 // ============================================================
-// Usage: import { generateRecruiterMessage } from '../services/gemini';
-// Requires: VITE_GEMINI_API_KEY in your .env file
+// Usage: import { generateRecruiterMessage } from '../services/groq';
+// Requires: VITE_GROQ_API_KEY in your .env file
 // ============================================================
 
-const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
-const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${GEMINI_API_KEY}`;
+const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY;
+const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions';
+const GROQ_MODEL = 'llama-3.3-70b-versatile';
 
 /**
  * Generates a professional recruiter message tailored to a job type.
@@ -14,8 +15,8 @@ const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemi
  * @returns {Promise<string>} - The generated message text
  */
 export const generateRecruiterMessage = async (jobType) => {
-  if (!GEMINI_API_KEY) {
-    throw new Error('Gemini API key not configured. Please add VITE_GEMINI_API_KEY to your .env file.');
+  if (!GROQ_API_KEY) {
+    throw new Error('Groq API key not configured. Please add VITE_GROQ_API_KEY to your .env file.');
   }
 
   const prompt = `Generate a professional, highly personalized outreach message written from the perspective of a RECRUITER, HIRING MANAGER, or COMPANY REPRESENTATIVE visiting the portfolio of Dinusara Nethmal. The visitor is reaching out to Dinusara regarding a "${jobType}" opportunity.
@@ -40,15 +41,17 @@ Formatting Constraints:
 
 Output ONLY the raw message text, ready for the visitor to copy and send.`;
 
-  const response = await fetch(GEMINI_URL, {
+  const response = await fetch(GROQ_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${GROQ_API_KEY}`,
+    },
     body: JSON.stringify({
-      contents: [{ parts: [{ text: prompt }] }],
-      generationConfig: {
-        temperature: 0.8,
-        maxOutputTokens: 2000,
-      },
+      model: GROQ_MODEL,
+      messages: [{ role: 'user', content: prompt }],
+      temperature: 0.8,
+      max_tokens: 2000,
     }),
   });
 
@@ -58,8 +61,8 @@ Output ONLY the raw message text, ready for the visitor to copy and send.`;
   }
 
   const data = await response.json();
-  const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+  const text = data?.choices?.[0]?.message?.content;
 
-  if (!text) throw new Error('No content returned from Gemini API.');
+  if (!text) throw new Error('No content returned from Groq API.');
   return text.trim();
 };
